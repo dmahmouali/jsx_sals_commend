@@ -11,7 +11,7 @@ import click
 @click.option("-c", is_flag=True, default = False, help="count chars")
 @click.option("--max", is_flag=True, default = False, help="Maximum line width")
 
-def net_stat(path:str, w:bool,l:bool,c:bool,max:bool) -> None:
+def strin_count(path:str, w:bool,l:bool,c:bool,max:bool) -> None:
     """
     word count script
     """
@@ -25,7 +25,7 @@ def net_stat(path:str, w:bool,l:bool,c:bool,max:bool) -> None:
     if(l): cmd += '-l '
     if(c): cmd += '-c '
     if(max): cmd += '-L '
-    click.echo(j.sal.process.execute(cmd+path))
+    exitcode, output, err = j.sal.process.execute(cmd+path)
 
 if __name__ == '__main__':
-    net_stat()
+    strin_count()

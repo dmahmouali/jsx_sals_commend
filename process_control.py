@@ -1,7 +1,7 @@
 from Jumpscale import j
 import click
 
-@click.command()
+@click.command( help='no option return current process' )
 @click.option( '--id', help='select by process ID')
 @click.option('--ppid',  help='select py parent process ID')
 @click.option('--name',  help='check if process name is true')
@@ -13,7 +13,7 @@ def process_control(id:int,ppid:int, name:str,port:int,fstr:str,all:bool) -> Non
     """
     process control script
     """
-    
+    j.debug()
     if id:
         click.echo(j.sal.process.getProcessPid(id))
     elif ppid:
