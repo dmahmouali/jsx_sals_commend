@@ -17,7 +17,7 @@ def process_control(id:int,ppid:int, name:str,port:int,fstr:str,all:bool) -> Non
     if id:
         click.echo(j.sal.process.getProcessPid(id))
     elif ppid:
-        click.echo(j.sal.process.execute('ps -ppid '+ppid))
+        click.echo(j.sal.process.execute('ps -ppid %d'%ppid))
     elif name:
         click.echo(j.sal.process.psfind(name))
     elif port:

@@ -1,9 +1,6 @@
 from Jumpscale import j
 import click
 
-#j.sal.process.execute('')
-
-
 @click.command()
 @click.argument('path', type=click.Path(exists=True))
 @click.option("-w", is_flag=True, default = False, help="count words")
@@ -15,17 +12,16 @@ def strin_count(path:str, w:bool,l:bool,c:bool,max:bool) -> None:
     """
     word count script
     """
-    #check isfile
-    #j.debug()
+
     if not j.sal.fs.isFile(str(path)):
-        print("not file")
-        return
+        raise ValueError("path is not correct or not file...")
+        
     cmd = 'wc '
     if(w): cmd += '-w '
     if(l): cmd += '-l '
     if(c): cmd += '-c '
     if(max): cmd += '-L '
-    exitcode, output, err = j.sal.process.execute(cmd+path)
+    exitcode, output, err = j.sal.process.execute('%s %s'%(cmd,path))
 
 if __name__ == '__main__':
     strin_count()
